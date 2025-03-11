@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="profile-container">
+    <h2>User Profile</h2>
+    <div class="profile-info">
+        <div class="profile-field">
+            <span class="field-label">Username:</span>
+            <span class="field-value">{{ user.username }}</span>
+        </div>
+        <div class="profile-field">
+            <span class="field-label">Name:</span>
+            <span class="field-value">{{ user.first_name }} {{ user.last_name }}</span>
+        </div>
+        <div class="profile-field">
+            <span class="field-label">Email:</span>
+            <span class="field-value">{{ user.email }}</span>
+        </div>
+        <div class="profile-field">
+            <span class="field-label">Member since:</span>
+            <span class="field-value">{{ user.date_joined|date:"F d, Y" }}</span>
+        </div>
+    </div>
+</div>
+{% endblock %}

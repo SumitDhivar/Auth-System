@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Authentication System</title>
+    <link rel="stylesheet" href="/static/css/styles.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">Auth System</div>
+            <ul class="nav-links">
+                <li><a href="/">Home</a></li>
+                {% if user.is_authenticated %}
+                <li><a href="{% url 'profile' %}">Profile</a></li>
+                <li><a href="{% url 'logout' %}">Logout</a></li>
+                {% else %}
+                <li><a href="{% url 'login' %}">Login</a></li>
+                <li><a href="{% url 'register' %}">Register</a></li>
+                {% endif %}
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="container">
+            {% if messages %}
+            <div class="messages">
+                {% for message in messages %}
+                <div class="message {{ message.tags }}">
+                    {{ message }}
+                </div>
+                {% endfor %}
+            </div>
+            {% endif %}
+
+            {% block content %}
+            <div class="welcome">
+                <h1>Welcome to our Authentication System</h1>
+                <p>A secure system to manage user registration and login.</p>
+                {% if not user.is_authenticated %}
+                <div class="action-buttons">
+                    <a href="{% url 'login' %}" class="btn">Login</a>
+                    <a href="{% url 'register' %}" class="btn">Register</a>
+                </div>
+                {% endif %}
+            </div>
+            {% endblock %}
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Authentication System</p>
+    </footer>
+
+    <script src="/static/js/scripts.js"></script>
+</body>
+</html>
